@@ -1,6 +1,10 @@
 let led_an = false
+let bild_an = false
+let A = false
+let B = false
 while (true) {
-    if (input.buttonIsPressed(Button.A)) {
+    if (input.buttonIsPressed(Button.A) && !A) {
+        A = true
         if (led_an == true) {
             basic.turnRgbLedOff()
         } else {
@@ -8,22 +12,25 @@ while (true) {
         }
         
         led_an = !led_an
-        while (input.buttonIsPressed(Button.A)) {
-            
-        }
     }
     
-    if (input.buttonIsPressed(Button.B)) {
-        if (led_an == true) {
-            basic.turnRgbLedOff()
+    if (!input.buttonIsPressed(Button.A) && A) {
+        A = false
+    }
+    
+    if (input.buttonIsPressed(Button.B) && !B) {
+        B = true
+        if (bild_an == true) {
+            basic.clearScreen()
         } else {
-            basic.setLedColor(0x005500)
+            basic.showIcon(IconNames.Heart)
         }
         
-        led_an = !led_an
-        while (input.buttonIsPressed(Button.B)) {
-            
-        }
+        bild_an = !bild_an
+    }
+    
+    if (!input.buttonIsPressed(Button.B) && B) {
+        B = false
     }
     
 }
